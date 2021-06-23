@@ -33,6 +33,7 @@ const AppProvider = ({ children }) => {
     const response = await fetchData.json()
     if (response) {
       const data = response[0].navCatagories
+      console.log(data)
       const pages = data.map(item => {
       const page = item.name
       const links = item.children_data.map(child => ({
@@ -41,6 +42,7 @@ const AppProvider = ({ children }) => {
         include_in_menu: child.include_in_menu,
         include_in_menu_column2: child.include_in_menu_column2,
         include_in_menu_column3: child.include_in_menu_column3,
+        custom_category_name: child.custom_category_name
       }))
       return { page, links }
       })

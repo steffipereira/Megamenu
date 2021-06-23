@@ -7,8 +7,12 @@ const Submenu = () => {
     location,
     page: { page, links },
   } = useGlobalContext()
+
   const container = useRef(null)
   const [columns, setColumns] = useState('col-2')
+
+  const column1 = links.filter(item => !item.include_in_menu_column2 && !item.include_in_menu_column3)
+  const column2 = links.filter(item => item.include_in_menu_column2 && !item.include_in_menu_column3)
 
   useEffect(() => {
     setColumns('col-2')
@@ -33,19 +37,20 @@ const Submenu = () => {
       <section>
         <h4>{page}</h4>
         <div className={`submenu-center ${columns}`}>
-          {links.map((link, index) => {
-            const { url, icon, label } = link
-            return (
-              <a key={index} href={url}>
-                {icon}
-                {label}
-              </a>
-            )
-          })}
+          <div className="col-1">
+            {column1.map(link => <Links {...link} />)}
+          </div>
+          <div className="col-1">
+             {column2.map(link => <Links {...link} />)}
+          </div>
         </div>
       </section>
     </aside>
   )
+}
+
+export const Links = ({ url, label, custom_category_name }) => {
+  return <a href={url}>{custom_category_name ? custom_category_name : label}</a>
 }
 
 export default Submenu
