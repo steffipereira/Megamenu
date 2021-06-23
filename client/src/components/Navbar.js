@@ -2,7 +2,7 @@ import React from 'react'
 import { useGlobalContext } from './Context'
 
 const Navbar = () => {
-  const { openSidebar, openSubmenu, closeSubmenu } = useGlobalContext()
+  const { openSidebar, openSubmenu, closeSubmenu, data } = useGlobalContext()
 
   const displaySubmenu = (e) => {
     const page = e.target.textContent
@@ -27,21 +27,15 @@ const Navbar = () => {
           </button>
         </div>
         <ul className='nav-links'>
-          <li>
-            <button className='link-btn' onMouseOver={displaySubmenu}>
-              Latest
-            </button>
-          </li>
-          <li>
-            <button className='link-btn' onMouseOver={displaySubmenu}>
-              Brands
-            </button>
-          </li>
-          <li>
-            <button className='link-btn' onMouseOver={displaySubmenu}>
-              Clothing
-            </button>
-          </li>
+          {data.map((name, index) => (
+            <div key={index+1}>
+              <li>
+                <button className='link-btn' onMouseOver={displaySubmenu}>
+                  {name.page}
+                </button>
+              </li>
+            </div>
+          ))}
         </ul>
       </div>
     </nav>

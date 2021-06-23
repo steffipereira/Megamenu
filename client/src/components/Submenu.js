@@ -24,7 +24,6 @@ const Submenu = () => {
     //   setColumns('col-4')
     // }
   }, [page, location, links])
-  console.log({ page, links })
 
   return (
     <aside
