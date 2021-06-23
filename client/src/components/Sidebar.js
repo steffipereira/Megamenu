@@ -2,7 +2,8 @@ import React from 'react'
 import { useGlobalContext } from './Context'
 
 const Sidebar = () => {
-  const { isSidebarOpen, closeSidebar, page: { page, links } } = useGlobalContext()
+  const { isSidebarOpen, closeSidebar, data } = useGlobalContext()
+
   return (
     <div
       className={`${
@@ -11,22 +12,20 @@ const Sidebar = () => {
     >
       <aside className='sidebar'>
         <button className='close-btn' onClick={closeSidebar}>
-          close icon
+          x
         </button>
         <div className='sidebar-links'>
           <article>
-            <h4>{page}</h4>
-            <div className='sidebar-sublinks'>
-              {links.map((link, index) => {
-                const { url, icon, label } = link
-                return (
-                  <a key={index} href={url}>
-                    {icon}
-                    {label}
-                  </a>
-                )
-              })}
-            </div>
+            {data.map((items, index) => (
+              <div key={index+1}>
+                <h4>{items.page}</h4>
+                <div className='sidebar-sublinks'>
+                  {items.links.slice(0,5).map(({ url, label, custom_name }) => (
+                    <a key={label} href={url}>{custom_name ? custom_name : label}</a>)
+                  )}
+                </div>
+              </div>
+            ))}
           </article>
         </div>
       </aside>

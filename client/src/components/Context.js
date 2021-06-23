@@ -33,7 +33,6 @@ const AppProvider = ({ children }) => {
     const response = await fetchData.json()
     if (response) {
       const data = response[0].navCatagories
-      console.log(data)
       const pages = data.map(item => {
       const page = item.name
       const links = item.children_data.map(child => ({
@@ -46,7 +45,6 @@ const AppProvider = ({ children }) => {
       }))
         return { page, links }
       })
-      console.log(pages)
       setData(pages)
     }
   }

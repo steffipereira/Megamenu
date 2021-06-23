@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGlobalContext } from './Context'
 
 const Submenu = () => {
@@ -9,11 +9,7 @@ const Submenu = () => {
   } = useGlobalContext()
 
   const container = useRef(null)
-  //const [columns, setColumns] = useState('col-2')
-  console.log(`View All ${page}`)
   const header = links.find(name => name.custom_name === `View all ${page}`)
-  console.log(header)
-
   const column1 = links.filter(item => !item.column2 && !item.column3 && item !== header && item.column2 !== undefined && item.column3 !== undefined)
   const column2 = links.filter(item => item.column2 && !item.column3 && item.column2 !== undefined && item.column3 !== undefined)
 
