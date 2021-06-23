@@ -39,12 +39,12 @@ const AppProvider = ({ children }) => {
       const links = item.children_data.map(child => ({
         label: child.name,
         url: child.category_path,
-        include_in_menu: child.include_in_menu,
-        include_in_menu_column2: child.include_in_menu_column2,
-        include_in_menu_column3: child.include_in_menu_column3,
-        custom_category_name: child.custom_category_name
+        column2: child.include_in_menu_column2,
+        column3: child.include_in_menu_column3,
+        custom_name: child.custom_category_name,
+        is_header: child.is_column_header,
       }))
-      return { page, links }
+        return { page, links }
       })
       console.log(pages)
       setData(pages)

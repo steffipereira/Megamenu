@@ -9,24 +9,19 @@ const Submenu = () => {
   } = useGlobalContext()
 
   const container = useRef(null)
-  const [columns, setColumns] = useState('col-2')
+  //const [columns, setColumns] = useState('col-2')
+  console.log(`View All ${page}`)
+  const header = links.find(name => name.custom_name === `View all ${page}`)
+  console.log(header)
 
-  const column1 = links.filter(item => !item.include_in_menu_column2 && !item.include_in_menu_column3)
-  const column2 = links.filter(item => item.include_in_menu_column2 && !item.include_in_menu_column3)
+  const column1 = links.filter(item => !item.column2 && !item.column3 && item !== header && item.column2 !== undefined && item.column3 !== undefined)
+  const column2 = links.filter(item => item.column2 && !item.column3 && item.column2 !== undefined && item.column3 !== undefined)
 
   useEffect(() => {
-    setColumns('col-2')
     const submenu = container.current
     const { center, bottom } = location
     submenu.style.left = `${center}px`
     submenu.style.top = `${bottom}px`
-    console.log(links)
-    // if (links.length === 3) {
-    //   setColumns('col-3')
-    // }
-    // if (links.length > 3) {
-    //   setColumns('col-4')
-    // }
   }, [page, location, links])
 
   return (
@@ -35,13 +30,13 @@ const Submenu = () => {
       ref={container}
     >
       <section>
-        <h4>{page}</h4>
-        <div className={`submenu-center ${columns}`}>
+        <div className="submenu-center col-2">
           <div className="col-1">
-            {column1.map(link => <Links {...link} />)}
+            {header && <a href={header.url}>{header.custom_name}</a>}
+            {column1.map((link, index) => <Links key={index+1} {...link} />)}
           </div>
           <div className="col-1">
-             {column2.map(link => <Links {...link} />)}
+             {column2.map((link, index) => <Links key={index+1} {...link} />)}
           </div>
         </div>
       </section>
@@ -49,8 +44,8 @@ const Submenu = () => {
   )
 }
 
-export const Links = ({ url, label, custom_category_name }) => {
-  return <a href={url}>{custom_category_name ? custom_category_name : label}</a>
+export const Links = ({ url, label, custom_name }) => {
+  return <a href={url}>{custom_name ? custom_name : label}</a>
 }
 
 export default Submenu

@@ -337,6 +337,13 @@ Submenu
   text-transform: capitalize;
   display: flex;
   align-items: center;
+  padding: .5rem 0;
+}
+.submenu-center a:first-child {
+  font-weight: bold;
+}
+.submenu-center a:hover {
+  color: var(--clr-red-light);
 }
 .submenu-center svg {
   color: var(--clr-grey-5);
