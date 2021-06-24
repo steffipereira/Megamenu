@@ -4,14 +4,28 @@ This project is built with expressjs on the backend and reactjs on the frontend
 
 ## Available Scripts
 
-In the project directory, you can run:
+To start the backend server:
 
-### `PORT=3001 yarn start`
+```yarn install```
 
-Runs the backend using expressjs.
-Open [http://localhost:3001/users](http://localhost:3001/users) to view it in the browser.
+```PORT=3001 yarn start``` on mac
 
-### `cd client && yarn start`
+```set PORT=3001 yarn start``` on windows
 
-Launches the frontend of the application.
 
+To start the frontend, open another tab
+
+```cd client && yarn install```
+
+```yarn start```
+
+> **All Features:**
+
+  - Display a dropdown on hover, the dropdown is spilt into 2 parts
+  - Added a sidebar for mobile screen
+  - 
+#### Languages and Technologies Used:
+  - REACT
+  - CSS
+  - HTML
+  - Javascript
